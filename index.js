@@ -2,7 +2,6 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 // Need a badge for the chosen license near the top of the README and a notice in the license section that explains the license
-// Links in the table of contents should move page to relevant section
 
 let licenseOptions = ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense"];
 
@@ -76,6 +75,13 @@ inquirer
 ${data.description}
             
 ## Table of Contents
+
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [License](#License)
+- [Contributing](#Contributing)
+- [Tests](#Tests)
+- [Questions](#Questions)
             
 ## Installation
 
