@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+let licenseBadge;
 
 // Need a badge for the chosen license near the top of the README and a notice in the license section that explains the license
 
@@ -65,10 +66,29 @@ inquirer
     ])
 
     .then(function(data) {
-        const filename = `README.md`;
-        fs.writeFile(filename, 
+        
+        if (data.license === "GNU AGPLv3") {
+            licenseBadge = "https://img.shields.io/badge/License-AGPL%20v3-blue.svg";
+        } else if (data.license === "GNU GPLv3") {
+            licenseBadge = "https://img.shields.io/badge/License-GPLv3-blue.svg";
+        } else if (data.license === "GNU LGPLv3") {
+            licenseBadge = "https://img.shields.io/badge/License-LGPL%20v3-blue.svg";
+        } else if (data.license === "Mozilla Public License 2.0") {
+            licenseBadge = "https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg";
+        } else if (data.license === "Apache License 2.0") {
+            licenseBadge = "https://img.shields.io/badge/License-Apache%202.0-blue.svg";
+        } else if (data.license === "MIT License") {
+            licenseBadge = "https://img.shields.io/badge/License-MIT-yellow.svg";
+        } else if (data.license === "Boost Software License 1.0") {
+            licenseBadge = "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
+        } else if (data.license === "The Unlicense") {
+            licenseBadge = "https://img.shields.io/badge/license-Unlicense-blue.svg";
+        }
 
-`# ${data.title}
+        const filename = `README.md`;
+        fs.writeFile(filename,
+
+`# ${data.title} ![License:](${licenseBadge})
 
 ## Description
 
@@ -110,6 +130,6 @@ ${data.username} and you can view my GitHub profile at https://github.com/${data
 
 If you have additional questions, feel free to reach out to me at ${data.email}.`
 
-    , (err) => err ? console.error(err) : console.log('Thank you for your responses! Your README has been generated successfully.')
+    , (err) => err ? console.error(err) : console.log("Thank you for your responses! Your README has been generated successfully.")
     );
 });
