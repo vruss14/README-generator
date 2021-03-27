@@ -1,10 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 let licenseBadge;
-
-// Need a badge for the chosen license near the top of the README and a notice in the license section that explains the license
-
-let licenseOptions = ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense"];
+let licenseOptions = ["GNU AGPLv3", "GNU GPLv3", "GNU LGPLv3", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "Creative Commons 0", "Eclipse Public License 1.0", "IBM Public License Version 1.0"].sort();
 
 inquirer
     .prompt([
@@ -83,12 +80,18 @@ inquirer
             licenseBadge = "https://img.shields.io/badge/License-Boost%201.0-lightblue.svg";
         } else if (data.license === "The Unlicense") {
             licenseBadge = "https://img.shields.io/badge/license-Unlicense-blue.svg";
+        } else if (data.license === "Creative Commons 0") {
+            licenseBadge = "https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg"
+        } else if (data.license === "Eclipse Public License 1.0") {
+            licenseBadge = "https://img.shields.io/badge/License-EPL%201.0-red.svg";
+        } else if (data.license === "IBM Public License Version 1.0") {
+            licenseBadge = "https://img.shields.io/badge/License-IPL%201.0-blue.svg";
         }
 
         const filename = `README.md`;
         fs.writeFile(filename,
 
-`# ${data.title} ![License:](${licenseBadge})
+`# ${data.title} ![License](${licenseBadge})
 
 ## Description
 
